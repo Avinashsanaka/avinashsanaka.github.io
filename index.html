@@ -822,8 +822,9 @@ html[data-theme="light"] .project ul {
   position: absolute;
   right: 0;
   bottom: 68px;
-  width: min(390px, calc(100vw - 36px));
-  height: 520px;
+  width: min(430px, calc(100vw - 28px));
+  height: min(590px, calc(100vh - 110px));
+  min-height: 500px;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--line-2);
@@ -847,19 +848,31 @@ html[data-theme="light"] .project ul {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 15px;
+  padding: 13px 15px;
   border-bottom: 1px solid var(--line);
+}
+
+.chat-head .brand-mark {
+  flex: 0 0 auto;
+}
+
+.chat-head > div {
+  min-width: 0;
 }
 
 .chat-head strong {
   display: block;
   font-size: 14px;
+  line-height: 1.25;
 }
 
 .chat-head span {
   display: block;
   color: var(--muted);
   font: 500 11px var(--mono);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .chat-close {
@@ -869,6 +882,8 @@ html[data-theme="light"] .project ul {
   color: var(--muted);
   cursor: pointer;
   font-size: 20px;
+  line-height: 1;
+  padding: 4px;
 }
 
 .chat-messages {
@@ -881,11 +896,16 @@ html[data-theme="light"] .project ul {
 }
 
 .msg {
-  max-width: 86%;
+  max-width: 92%;
   border-radius: 8px;
   padding: 11px 13px;
   font-size: 14px;
   line-height: 1.45;
+}
+
+.msg strong {
+  color: var(--text);
+  font-weight: 800;
 }
 
 .msg.bot {
@@ -922,6 +942,11 @@ html[data-theme="light"] .project ul {
   flex-wrap: wrap;
   gap: 8px;
   padding: 0 16px 12px;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.chat-suggestions.dismissed {
+  display: none;
 }
 
 .chat-suggestions button {
@@ -1531,7 +1556,7 @@ html[data-theme="light"] .project ul {
       <div class="msg bot">Hey, I can answer questions about Avinash's experience, AI projects, data engineering work, and technical strengths.</div>
     </div>
 
-    <div class="chat-suggestions">
+    <div class="chat-suggestions" id="chat-suggestions">
       <button type="button" onclick="sendSugg(this)">What makes him different?</button>
       <button type="button" onclick="sendSugg(this)">Tell me about his AI projects</button>
       <button type="button" onclick="sendSugg(this)">Summarize his data experience</button>
@@ -1646,6 +1671,10 @@ RESPONSE GUIDELINES:
 let chatOpen = false;
 let history = [];
 
+function dismissSuggestions() {
+  document.getElementById('chat-suggestions')?.classList.add('dismissed');
+}
+
 function toggleChat() {
   if (!CHAT_AVAILABLE) return;
   chatOpen ? closeChat() : openChat();
@@ -1675,6 +1704,7 @@ async function sendMsg() {
   const text = inp.value.trim();
   if (!text) return;
 
+  dismissSuggestions();
   inp.value = '';
   addMsg('user', text);
   history.push({ role: 'user', content: text });
@@ -1705,10 +1735,27 @@ function addMsg(type, text) {
   const el = document.getElementById('chat-msgs');
   const msg = document.createElement('div');
   msg.className = `msg ${type}`;
-  msg.textContent = text;
+  if (type === 'bot') {
+    msg.innerHTML = renderBotMessage(text);
+  } else {
+    msg.textContent = text;
+  }
   el.appendChild(msg);
   el.scrollTop = el.scrollHeight;
   return msg;
+}
+
+function renderBotMessage(text) {
+  const escaped = text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+  return escaped
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br>');
 }
 
 function addTyping() {
