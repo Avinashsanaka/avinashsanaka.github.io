@@ -1799,7 +1799,7 @@ async function saveLead(lead) {
 
     typ.remove();
     if (!res.ok) throw new Error('lead');
-    addMsg('bot', `Thanks, ${lead.name}. I saved your details so Avinash can follow up.`);
+    addMsg('bot', `Thanks, ${lead.name}. I saved your details so Avinash can follow up. You can ask a few more questions meanwhile; I shared your details with Avinash.`);
   } catch {
     typ.remove();
     addMsg('bot', `Thanks, ${lead.name}. I could not save that automatically, so please email Avinash directly at avinashsanaka1@gmail.com.`);
