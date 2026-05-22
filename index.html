@@ -908,6 +908,11 @@ html[data-theme="light"] .project ul {
   font-weight: 800;
 }
 
+.msg em {
+  color: color-mix(in srgb, var(--text) 90%, var(--accent));
+  font-style: italic;
+}
+
 .msg.bot {
   align-self: flex-start;
   background: var(--panel-2);
@@ -1665,7 +1670,8 @@ RESPONSE GUIDELINES:
 - Be specific, warm, and informative
 - You may introduce yourself as Durga when it feels natural
 - Refer to Avinash in third person
-- Keep responses concise
+- Keep responses concise: usually 2-4 short paragraphs or 4-6 bullets max
+- Avoid ending every response with a generic question
 - Never fabricate numbers, dates, or companies not listed above
 - If asked if he is available or open to work: yes, actively looking`;
 
@@ -1824,6 +1830,7 @@ function renderBotMessage(text) {
 
   return escaped
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
     .replace(/\n/g, '<br>');
 }
 
