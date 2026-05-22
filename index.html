@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avinash Sanaka - Software Engineer</title>
+<meta name="description" content="Software Engineer specializing in automation frameworks, AI workflows, and data quality systems. 5 years of experience across Cisco, data pipelines, and Claude API integrations.">
+<meta property="og:title" content="Avinash Sanaka - Software Engineer">
+<meta property="og:description" content="Automation, AI workflows, and data quality systems built for production.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #0b0f14;
+  --bg-2: #10161d;
+  --panel: #141b23;
+  --panel-2: #19222c;
+  --line: #263241;
+  --line-2: #354455;
+  --text: #eef3f8;
+  --text-rgb: 238, 243, 248;
+  --muted: #9eabb8;
+  --soft: #6f7e8d;
+  --accent: #59d2ff;
+  --accent-2: #89f1c8;
+  --amber: #f5c766;
+  --danger: #ff837a;
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.34);
+  --radius: 8px;
+  --mono: "IBM Plex Mono", monospace;
+  --sans: "Inter", system-ui, sans-serif;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f8fb;
+  --bg-2: #edf2f7;
+  --panel: #ffffff;
+  --panel-2: #f0f5fa;
+  --line: #d6e0ea;
+  --line-2: #b7c6d6;
+  --text: #101821;
+  --text-rgb: 16, 24, 33;
+  --muted: #546273;
+  --soft: #7a8795;
+  --accent: #0078a8;
+  --accent-2: #0b8f70;
+  --amber: #a56600;
+  --danger: #c2413b;
+  --shadow: 0 22px 70px rgba(30, 45, 62, 0.14);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--accent) 8%, transparent), transparent 360px),
+    radial-gradient(circle at 80% 0%, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 280px),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(var(--text-rgb),0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--text-rgb),0.04) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.82), transparent 72%);
+  z-index: 0;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 0;
+}
+
+html[data-theme="light"] body {
+  background:
+    linear-gradient(118deg, transparent 0 22%, rgba(0, 120, 168, 0.075) 22% 22.45%, transparent 22.45% 48%, rgba(11, 143, 112, 0.06) 48% 48.35%, transparent 48.35%),
+    linear-gradient(162deg, transparent 0 58%, rgba(0, 120, 168, 0.055) 58% 58.38%, transparent 58.38%),
+    linear-gradient(180deg, rgba(255,255,255,0.96), rgba(246,248,251,0.98) 420px, var(--bg));
+}
+
+html[data-theme="light"] body::before {
+  background-image:
+    linear-gradient(rgba(16,24,33,0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16,24,33,0.055) 1px, transparent 1px),
+    linear-gradient(rgba(0,120,168,0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,120,168,0.075) 1px, transparent 1px);
+  background-size: 48px 48px, 48px 48px, 192px 192px, 192px 192px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.88), rgba(0,0,0,0.42) 54%, transparent 86%);
+}
+
+html[data-theme="light"] body::after {
+  opacity: 1;
+  background:
+    repeating-linear-gradient(118deg, transparent 0 92px, rgba(0,120,168,0.055) 92px 94px, transparent 94px 180px),
+    repeating-linear-gradient(28deg, transparent 0 150px, rgba(11,143,112,0.045) 150px 152px, transparent 152px 260px);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.68), transparent 70%);
+}
+
+a { color: inherit; }
+
+button, input { font: inherit; }
+
+.page {
+  position: relative;
+  z-index: 1;
+}
+
+.shell {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 84%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.nav-inner {
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  font: 600 12px var(--mono);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.brand-role {
+  color: var(--muted);
+  font: 500 11px var(--mono);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font: 500 12px var(--mono);
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font: 700 11px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.social-links a:hover {
+  color: var(--accent);
+}
+
+.theme-toggle {
+  min-width: 64px;
+  height: 38px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--panel) 72%, transparent);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.theme-icon {
+  font: 700 11px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.nav-action {
+  border: 1px solid var(--line-2);
+  background: var(--text);
+  color: var(--bg);
+  padding: 9px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.hero {
+  min-height: calc(100vh - 68px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+  align-items: center;
+  gap: 46px;
+  padding: 78px 0 54px;
+}
+
+.eyebrow,
+.section-kicker,
+.meta {
+  color: var(--accent);
+  font: 600 12px var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-kicker {
+  border-left: 2px solid var(--accent);
+  padding-left: 10px;
+}
+
+.hero h1 {
+  margin: 18px 0 18px;
+  font-size: clamp(42px, 6.3vw, 86px);
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+}
+
+.hero-lede {
+  max-width: 720px;
+  color: color-mix(in srgb, var(--text) 80%, var(--muted));
+  font-size: clamp(18px, 2.1vw, 23px);
+  line-height: 1.45;
+  margin: 0 0 28px;
+}
+
+.proof-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 28px 0 32px;
+}
+
+.proof {
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel) 78%, transparent);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.proof strong {
+  display: block;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--accent);
+  margin-bottom: 7px;
+}
+
+.proof span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  border-radius: 8px;
+  padding: 0 18px;
+  text-decoration: none;
+  border: 1px solid var(--line-2);
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.btn.secondary {
+  background: color-mix(in srgb, var(--panel) 54%, transparent);
+  color: var(--text);
+}
+
+.btn:hover { transform: translateY(-1px); }
+
+.hero-visual {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.visual-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.visual-title {
+  color: var(--muted);
+  font: 600 12px var(--mono);
+}
+
+.pulse {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-2);
+  font: 600 11px var(--mono);
+}
+
+.pulse::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: 0 0 14px var(--accent-2);
+}
+
+.system-map {
+  position: relative;
+  min-height: 465px;
+  padding: 26px;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 22px;
+}
+
+.map-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: minmax(104px, auto);
+  gap: 14px;
+}
+
+.node {
+  position: relative;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 44%, transparent);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.node::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  border-radius: 8px 0 0 8px;
+  background: var(--accent);
+}
+
+.node.ai::before { background: var(--accent-2); }
+.node.warning::before { background: var(--amber); }
+.node.fix::before { background: var(--danger); }
+
+.node-label {
+  color: var(--soft);
+  font: 600 10px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.node-value {
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.15;
+}
+
+.node-note {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+  margin-top: 8px;
+}
+
+.pipeline {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+}
+
+.pipeline-title {
+  color: var(--muted);
+  font: 600 11px var(--mono);
+  margin-bottom: 14px;
+}
+
+.pipeline-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.stage {
+  min-height: 62px;
+  border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--line));
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: color-mix(in srgb, var(--text) 88%, var(--accent));
+  font: 600 12px var(--mono);
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+}
+
+.section {
+  padding: 76px 0;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(260px, 0.7fr);
+  gap: 34px;
+  align-items: end;
+  margin-bottom: 32px;
+}
+
+.section h2 {
+  margin: 10px 0 0;
+  font-size: clamp(31px, 4.3vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.section-intro {
+  color: var(--muted);
+  margin: 0;
+  font-size: 16px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.7fr);
+  gap: 22px;
+}
+
+.story {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 28px;
+}
+
+.story p {
+  color: color-mix(in srgb, var(--text) 82%, var(--muted));
+  font-size: 17px;
+  margin: 0;
+}
+
+.story p + p { margin-top: 16px; }
+
+.focus-list {
+  display: grid;
+  gap: 12px;
+}
+
+.focus-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--panel) 76%, transparent);
+  padding: 18px;
+}
+
+.focus-item strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.focus-item span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.case-study {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(340px, 0.78fr);
+  gap: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--panel), var(--bg-2));
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+.case-title {
+  margin: 0 0 12px;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.case-copy {
+  color: color-mix(in srgb, var(--text) 80%, var(--muted));
+  margin: 0 0 22px;
+}
+
+.case-points {
+  display: grid;
+  gap: 12px;
+}
+
+.case-point {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.case-point b {
+  color: var(--accent);
+  font: 600 12px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.case-point span { color: var(--muted); }
+
+.case-point code,
+.role code {
+  color: var(--accent);
+  font: 600 0.95em var(--mono);
+}
+
+.metric-board {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  align-content: start;
+}
+
+.metric {
+  min-height: 138px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 42%, transparent);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.metric-num {
+  color: var(--accent);
+  font-size: 42px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.metric-label {
+  color: var(--muted);
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.skill-group {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 20px;
+}
+
+.skill-group h3 {
+  margin: 0 0 14px;
+  font-size: 15px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: color-mix(in srgb, var(--text) 82%, var(--muted));
+  background: color-mix(in srgb, var(--panel) 54%, transparent);
+  font: 500 12px var(--mono);
+}
+
+.chip.prime {
+  border-color: color-mix(in srgb, var(--accent) 52%, var(--line));
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.timeline {
+  display: grid;
+  gap: 16px;
+}
+
+.role {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 22px;
+}
+
+.role-date {
+  color: var(--accent);
+  font: 600 12px var(--mono);
+}
+
+.role-place {
+  color: var(--muted);
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.role h3 {
+  margin: 0 0 4px;
+  font-size: 21px;
+  letter-spacing: -0.02em;
+}
+
+.role-company {
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.role ul,
+.project ul {
+  margin: 0;
+  padding-left: 18px;
+  color: color-mix(in srgb, var(--text) 82%, var(--muted));
+}
+
+.role li + li,
+.project li + li { margin-top: 8px; }
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.project {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 24px;
+}
+
+.project-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.project h3 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.15;
+}
+
+.status {
+  white-space: nowrap;
+  border: 1px solid color-mix(in srgb, var(--accent-2) 48%, var(--line));
+  color: var(--accent-2);
+  border-radius: 999px;
+  padding: 5px 9px;
+  font: 600 10px var(--mono);
+}
+
+.project p {
+  color: color-mix(in srgb, var(--text) 72%, var(--muted));
+  margin: 0 0 16px;
+}
+
+html[data-theme="light"] .project p,
+html[data-theme="light"] .project ul {
+  color: #263443;
+}
+
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.contact-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--panel), var(--panel-2));
+  padding: 30px;
+}
+
+.contact-panel h2 {
+  margin: 0 0 10px;
+  font-size: clamp(28px, 4vw, 46px);
+}
+
+.contact-panel p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.contact-panel .btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.contact-panel .btn.primary:hover {
+  box-shadow: 0 12px 34px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.footer {
+  color: var(--soft);
+  border-top: 1px solid var(--line);
+  padding: 28px 0;
+  font: 500 12px var(--mono);
+}
+
+.chat-widget {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 100;
+}
+
+.chat-panel {
+  position: absolute;
+  right: 0;
+  bottom: 68px;
+  width: min(390px, calc(100vw - 36px));
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.chat-panel.open {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.chat-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  border-bottom: 1px solid var(--line);
+}
+
+.chat-head strong {
+  display: block;
+  font-size: 14px;
+}
+
+.chat-head span {
+  display: block;
+  color: var(--muted);
+  font: 500 11px var(--mono);
+}
+
+.chat-close {
+  margin-left: auto;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.msg {
+  max-width: 86%;
+  border-radius: 8px;
+  padding: 11px 13px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.msg.bot {
+  align-self: flex-start;
+  background: var(--panel-2);
+  color: color-mix(in srgb, var(--text) 88%, var(--muted));
+  border: 1px solid var(--line);
+}
+
+.msg.user {
+  align-self: flex-end;
+  background: color-mix(in srgb, var(--accent) 13%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--line));
+}
+
+.typing {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.typing i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+  animation: bounce 1s infinite ease-in-out;
+}
+
+.typing i:nth-child(2) { animation-delay: 0.12s; }
+.typing i:nth-child(3) { animation-delay: 0.24s; }
+
+.chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 16px 12px;
+}
+
+.chat-suggestions button {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 6px 9px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.chat-suggestions button:hover {
+  color: var(--text);
+  border-color: var(--line-2);
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.chat-input input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 10px 12px;
+  outline: none;
+}
+
+.chat-input button,
+.chat-toggle {
+  border: 0;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.chat-input button { padding: 0 13px; }
+
+.chat-toggle {
+  width: 56px;
+  height: 56px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.36);
+  font-size: 20px;
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.45; }
+  40% { transform: translateY(-4px); opacity: 1; }
+}
+
+@media (max-width: 980px) {
+  .hero,
+  .about-grid,
+  .case-study,
+  .section-head {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 56px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .role {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .shell {
+    width: min(100% - 28px, 1180px);
+  }
+
+  .nav-inner {
+    height: auto;
+    min-height: 64px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .social-links {
+    display: none;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 46px 0 36px;
+  }
+
+  .proof-row,
+  .skills-grid,
+  .projects-grid,
+  .metric-board,
+  .pipeline-flow,
+  .contact-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .map-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .system-map {
+    min-height: auto;
+  }
+
+  .case-point {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .section {
+    padding: 54px 0;
+  }
+
+  .chat-widget {
+    right: 14px;
+    bottom: 14px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="nav">
+    <div class="shell nav-inner">
+      <a class="brand" href="#top" aria-label="Avinash Sanaka home">
+        <span class="brand-mark">AS</span>
+        <span class="brand-copy">
+          <span class="brand-name">Avinash Sanaka</span>
+          <span class="brand-role">Software Engineer</span>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#case-study">Case Study</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+      </nav>
+      <div class="nav-controls">
+        <div class="social-links" aria-label="Social links">
+          <a href="https://ca.linkedin.com/in/sanaka-sanaka1998" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+          <span class="theme-icon" id="theme-icon">Light</span>
+        </button>
+        <button class="nav-action chat-entry" type="button" onclick="openChat()">Ask AI</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="shell hero">
+      <div class="hero-copy reveal">
+        <div class="eyebrow">Cloud Data Engineering - AI Workflows - Data Quality</div>
+        <h1>Data & AI engineer building systems that find what others miss.</h1>
+        <p class="hero-lede">
+          I design Python automation frameworks, cloud data pipelines, validation systems, and AI-ready data layers for production-scale analytics and business applications.
+        </p>
+
+        <div class="proof-row">
+          <div class="proof">
+            <strong>5 yrs</strong>
+            <span>software engineering experience</span>
+          </div>
+          <div class="proof">
+            <strong>4,027</strong>
+            <span>orphaned records caught before production</span>
+          </div>
+          <div class="proof">
+            <strong>20+</strong>
+            <span>system domains automated and validated</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="#case-study">View Case Study</a>
+          <a class="btn secondary" href="mailto:avinashsanaka1@gmail.com">Email Me</a>
+          <a class="btn secondary" href="https://ca.linkedin.com/in/sanaka-sanaka1998" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <button class="btn secondary chat-entry" type="button" onclick="openChat()">Ask the AI Assistant</button>
+        </div>
+      </div>
+
+      <aside class="hero-visual reveal" aria-label="Production systems snapshot">
+        <div class="visual-top">
+          <span class="visual-title">production-systems.snapshot</span>
+          <span class="pulse">available</span>
+        </div>
+        <div class="system-map">
+          <div class="map-grid">
+            <div class="node">
+              <div class="node-label">Validation</div>
+              <div class="node-value">Multi-stage checks</div>
+              <div class="node-note">Uniqueness, referential integrity, deterministic IDs, and field-level business rules.</div>
+            </div>
+            <div class="node ai">
+              <div class="node-label">AI Layer</div>
+              <div class="node-value">RAG-ready data</div>
+              <div class="node-note">Indexing, retrieval patterns, Azure AI Search-style workflows, and model-assisted validation.</div>
+            </div>
+            <div class="node warning">
+              <div class="node-label">Data Quality</div>
+              <div class="node-value">1,000+ tables</div>
+              <div class="node-note">Lineage and integrity across interconnected production datasets.</div>
+            </div>
+            <div class="node fix">
+              <div class="node-label">Failure Analysis</div>
+              <div class="node-value">Silent loss fixed</div>
+              <div class="node-note">Traced multi-line narrative truncation and verified across thousands of records.</div>
+            </div>
+          </div>
+
+          <div class="pipeline">
+            <div class="pipeline-title">cloud data pattern</div>
+            <div class="pipeline-flow">
+              <div class="stage">ingest</div>
+              <div class="stage">transform</div>
+              <div class="stage">govern</div>
+              <div class="stage">ship</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="shell section" id="about">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">About</div>
+          <h2>Production-minded engineering with a quality-first edge.</h2>
+        </div>
+        <p class="section-intro">
+          My work sits where automation, cloud data platforms, backend systems, and data reliability meet. I like problems with messy inputs, hidden assumptions, and real operational stakes.
+        </p>
+      </div>
+
+      <div class="about-grid reveal">
+        <div class="story">
+          <p>
+            I am a software developer with 5 years of experience designing automation frameworks, validation pipelines, and developer tooling across production-scale systems.
+          </p>
+          <p>
+            My strongest lane is Python and SQL engineering: building systems that make data quality visible, repeatable, and testable. At Cisco, that meant IOS XE feature testing, router validation, IXIA traffic testing, and Python/TCL automation. At Kunuwanimano Child & Family Services, it means backend and data systems with strict integrity requirements.
+          </p>
+          <p>
+            After Cisco, I moved to Canada and completed postgraduate studies in Information Systems and Business Analysis at Northern College before stepping into my current data and backend systems role.
+          </p>
+          <p>
+            I am also actively building with Claude API, MCP, OpenAI Codex, NVIDIA NIM, and n8n to create practical AI workflows for validation, anomaly detection, RAG-style retrieval, and multi-model orchestration.
+          </p>
+        </div>
+
+        <div class="focus-list">
+          <div class="focus-item">
+            <strong>Automation-first builder</strong>
+            <span>Python frameworks that replace manual review with repeatable validation.</span>
+          </div>
+          <div class="focus-item">
+            <strong>Applied AI developer</strong>
+            <span>Claude API, MCP, n8n, and multi-provider LLM workflows used for real engineering tasks.</span>
+          </div>
+          <div class="focus-item">
+            <strong>Data quality specialist</strong>
+            <span>Failure-pattern detection, referential integrity, lineage, and migration validation.</span>
+          </div>
+          <div class="focus-item">
+            <strong>Cloud data engineer</strong>
+            <span>Azure, AWS, Linux, APIs, event-driven data movement, batch/streaming pipelines, and AI-ready stores.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section" id="case-study">
+      <div class="case-study reveal">
+        <div>
+          <div class="section-kicker">Featured Case Study</div>
+          <h2 class="case-title">Engineering a repeatable data migration platform for high-trust case data.</h2>
+          <p class="case-copy">
+            At Kunuwanimano Child & Family Services, I built a Python-based migration workspace around legacy Ingres data, CSV/workbook exports, and strict downstream template requirements. The work turned undocumented joins, merged person IDs, narrative text fields, and parent-child dependencies into documented, repeatable migration pipelines.
+          </p>
+
+          <div class="case-points">
+            <div class="case-point">
+              <b>Scope</b>
+              <span>Organized migration logic across Person, Intake, Ongoing, and Resource domains, with script-to-table mapping, ER diagrams, run logs, and status tracking for conversion and validation work.</span>
+            </div>
+            <div class="case-point">
+              <b>Design</b>
+              <span>Created deterministic <code>KUNU-*</code> unique IDs, parentUniqueID rules, stable sequence patterns, CSV output standards, date formatting, worker-name normalization, and duplicate-handling conventions.</span>
+            </div>
+            <div class="case-point">
+              <b>Safeguards</b>
+              <span>Resolved moved/merged person IDs through <code>ind_moved_info</code>, checked duplicate <code>uniqueID</code> values, validated missing parent links, and preserved narrative text by fetching <code>textnum</code> rows in line order.</span>
+            </div>
+            <div class="case-point">
+              <b>Impact</b>
+              <span>Caught 4,027 orphaned records before production, found roughly 20 categories of bad data, and fixed a silent multi-line narrative truncation issue before it could corrupt migrated records.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="metric-board">
+          <div class="metric">
+            <div class="metric-num">4,027</div>
+            <div class="metric-label">orphaned records detected before production deployment</div>
+          </div>
+          <div class="metric">
+            <div class="metric-num">4</div>
+            <div class="metric-label">major migration domains: Person, Intake, Ongoing, and Resource</div>
+          </div>
+          <div class="metric">
+            <div class="metric-num">198</div>
+            <div class="metric-label">Python files in the migration workspace, including domain scripts, utilities, and validation helpers</div>
+          </div>
+          <div class="metric">
+            <div class="metric-num">50</div>
+            <div class="metric-label">run-log files used to audit executions, reruns, and validation outcomes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section" id="skills">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">Skills</div>
+          <h2>Tools I use to build reliable systems.</h2>
+        </div>
+        <p class="section-intro">
+          Focused on backend automation, cloud data engineering, validation, AI/RAG workflows, governance, and practical delivery.
+        </p>
+      </div>
+
+      <div class="skills-grid reveal">
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <div class="chips">
+            <span class="chip prime">Python</span>
+            <span class="chip prime">SQL</span>
+            <span class="chip">Java</span>
+            <span class="chip">Scala</span>
+            <span class="chip">Node.js</span>
+            <span class="chip">TCL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>AI & Retrieval</h3>
+          <div class="chips">
+            <span class="chip prime">Claude API</span>
+            <span class="chip prime">MCP</span>
+            <span class="chip prime">RAG</span>
+            <span class="chip">Azure AI Search</span>
+            <span class="chip">Cosmos DB</span>
+            <span class="chip">OpenAI Codex</span>
+            <span class="chip">NVIDIA NIM</span>
+            <span class="chip">n8n</span>
+            <span class="chip">Prompt Engineering</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Data Systems</h3>
+          <div class="chips">
+            <span class="chip prime">ETL/ELT</span>
+            <span class="chip">Spark</span>
+            <span class="chip">PySpark</span>
+            <span class="chip">Airflow</span>
+            <span class="chip">Kafka</span>
+            <span class="chip">Batch/Streaming</span>
+            <span class="chip">Event-driven</span>
+            <span class="chip">Graph Connectors</span>
+            <span class="chip">Hadoop</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Cloud Platforms</h3>
+          <div class="chips">
+            <span class="chip prime">Azure</span>
+            <span class="chip prime">AWS</span>
+            <span class="chip">Azure Data Factory</span>
+            <span class="chip">Azure Synapse</span>
+            <span class="chip">Azure Data Lake Storage</span>
+            <span class="chip">Azure SQL</span>
+            <span class="chip">AWS S3</span>
+            <span class="chip">Linux</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Databases & Analytics</h3>
+          <div class="chips">
+            <span class="chip prime">PostgreSQL</span>
+            <span class="chip">MySQL</span>
+            <span class="chip">Data Modeling</span>
+            <span class="chip">Schema Design</span>
+            <span class="chip">Indexing</span>
+            <span class="chip">Power BI</span>
+            <span class="chip">Tableau</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Governance & Delivery</h3>
+          <div class="chips">
+            <span class="chip prime">Data Quality</span>
+            <span class="chip">Lineage</span>
+            <span class="chip">Access Control</span>
+            <span class="chip">Encryption</span>
+            <span class="chip">Monitoring</span>
+            <span class="chip">Cost Control</span>
+            <span class="chip">CI/CD</span>
+            <span class="chip">Terraform</span>
+            <span class="chip">Azure DevOps</span>
+            <span class="chip">Git</span>
+            <span class="chip">Databricks</span>
+            <span class="chip">Delta Lake</span>
+            <span class="chip">Unity Catalog</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section" id="experience">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">Experience</div>
+          <h2>Engineering roles with production consequences.</h2>
+        </div>
+        <p class="section-intro">
+          A compact view of the work. The emphasis is on shipped systems, validation, and practical impact.
+        </p>
+      </div>
+
+      <div class="timeline reveal">
+        <article class="role">
+          <div>
+            <div class="role-date">Dec 2023 - Present</div>
+            <div class="role-place">Timmins, ON, Canada</div>
+          </div>
+          <div>
+            <h3>Software Engineer, Data & Backend Systems</h3>
+            <div class="role-company">Kunuwanimano Child & Family Services</div>
+            <ul>
+              <li>Built a Python migration workspace across Person, Intake, Ongoing, and Resource domains with reusable utilities, script-to-table mapping, run logs, and migration status tracking.</li>
+              <li>Caught 4,027 orphaned records and roughly 20 categories of bad data before production deployment.</li>
+              <li>Implemented deterministic <code>KUNU-*</code> IDs, parentUniqueID checks, duplicate handling, moved-person ID resolution, line-ordered narrative extraction, and CSV output standards.</li>
+              <li>Maintained referential integrity across 1,000+ interconnected tables with lineage, documentation, data quality KPIs, and analytics-ready models.</li>
+              <li>Integrated Claude API and MCP to automate recurring validation work and support AI-enabled anomaly detection workflows.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role">
+          <div>
+            <div class="role-date">Nov 2020 - Nov 2022</div>
+            <div class="role-place">India</div>
+          </div>
+          <div>
+            <h3>Software Engineer - Automation and Test</h3>
+            <div class="role-company">Cisco Systems</div>
+            <ul>
+              <li>Tested assigned IOS XE network OS features for 17.8 and 17.9 releases as part of the IOS XE Core test engineering team.</li>
+              <li>Developed test plans, testcase strategies, and manual plus automated test coverage for router feature validation.</li>
+              <li>Worked with IXIA and IXIA Explorer to validate packet flow and end-to-end data transfer across Cisco ASR 900, 902, 903, and 920 routers.</li>
+              <li>Used Python, TCL, Cafy, PyATS, Linux, VNC, Git, and configuration templates to support automation, debugging, deployment, and source control.</li>
+              <li>Identified bugs, graded severity, and performed positive and negative security testing for router scenarios.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role">
+          <div>
+            <div class="role-date">Jun 2020 - Jun 2021</div>
+          </div>
+          <div>
+            <h3>Full Stack Developer</h3>
+            <div class="role-company">Perfex Technologies</div>
+            <ul>
+              <li>Built web applications and RESTful APIs using React.js and Node.js.</li>
+              <li>Optimized data access patterns and API response times.</li>
+              <li>Worked with stakeholders to scope features, clarify acceptance criteria, and deliver application updates.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell section" id="projects">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">Projects</div>
+          <h2>AI systems and workflow automation in progress.</h2>
+        </div>
+        <p class="section-intro">
+          These projects show where I am pushing next: model orchestration, financial intelligence, and agent workflows.
+        </p>
+      </div>
+
+      <div class="projects-grid reveal">
+        <article class="project">
+          <div class="project-top">
+            <h3>AI-Powered Financial Intelligence Platform</h3>
+            <span class="status">In Development</span>
+          </div>
+          <p>Multi-model AI application for financial analysis, anomaly detection, sentiment, retrieval, and spending intelligence.</p>
+          <ul>
+            <li>Routes tasks across Claude API, OpenAI Codex, and NVIDIA NIM with MCP-based context dispatch.</li>
+            <li>Designed around AI-ready data pipelines, retrieval/indexing patterns, and structured outputs for downstream analytics.</li>
+            <li>Includes secure authentication with Argon2 hashing, HTTPOnly cookies, session expiry, and token revocation.</li>
+            <li>Builds pipelines for earnings reports, stock sentiment, spending breakdowns, and category tagging.</li>
+          </ul>
+          <div class="project-stack">
+            <span class="chip prime">Claude API</span>
+            <span class="chip">OpenAI Codex</span>
+            <span class="chip">NVIDIA NIM</span>
+            <span class="chip">MCP</span>
+            <span class="chip">Python</span>
+            <span class="chip">RAG</span>
+            <span class="chip">Indexing</span>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-top">
+            <h3>AI Agent & Workflow Automation</h3>
+            <span class="status">Ongoing</span>
+          </div>
+          <p>Agent workflows for task automation, validation, data processing, and enterprise integration using practical AI orchestration patterns.</p>
+          <ul>
+            <li>Builds workflows with MCP, n8n, and multi-provider LLM APIs.</li>
+            <li>Focuses on prompt design, context management, APIs, batch/streaming patterns, agent orchestration, and reliable workflow outputs.</li>
+          </ul>
+          <div class="project-stack">
+            <span class="chip prime">MCP</span>
+            <span class="chip">n8n</span>
+            <span class="chip">LLM APIs</span>
+            <span class="chip">Python</span>
+            <span class="chip">Prompt Engineering</span>
+            <span class="chip">APIs</span>
+            <span class="chip">Event-driven</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell section" id="contact">
+      <div class="contact-panel reveal">
+        <div>
+          <div class="section-kicker">Contact</div>
+          <h2>Let's talk about AI, data, or automation work.</h2>
+          <p>Open to AI engineering, data engineering, platform engineering, and automation roles. Based in Canada and open to remote opportunities.</p>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="mailto:avinashsanaka1@gmail.com">Email Avinash</a>
+          <a class="btn secondary" href="https://ca.linkedin.com/in/sanaka-sanaka1998" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <button class="btn secondary chat-entry" type="button" onclick="openChat()">Ask AI</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">Avinash Sanaka - Software Engineer - Built for clarity, reliability, and production impact.</div>
+  </footer>
+</div>
+
+<div class="chat-widget">
+  <div class="chat-panel" id="chat-panel" role="dialog" aria-label="AI assistant">
+    <div class="chat-head">
+      <span class="brand-mark">AI</span>
+      <div>
+        <strong>Avinash's AI Assistant</strong>
+        <span>Ask about experience, projects, or fit</span>
+      </div>
+      <button class="chat-close" type="button" onclick="closeChat()" aria-label="Close chat">x</button>
+    </div>
+
+    <div class="chat-messages" id="chat-msgs">
+      <div class="msg bot">Hey, I can answer questions about Avinash's experience, AI projects, data engineering work, and technical strengths.</div>
+    </div>
+
+    <div class="chat-suggestions">
+      <button type="button" onclick="sendSugg(this)">What makes him different?</button>
+      <button type="button" onclick="sendSugg(this)">Tell me about his AI projects</button>
+      <button type="button" onclick="sendSugg(this)">Summarize his data experience</button>
+    </div>
+
+    <div class="chat-input">
+      <input id="chat-inp" type="text" placeholder="Ask about Avinash..." autocomplete="off" onkeydown="if(event.key==='Enter')sendMsg()">
+      <button type="button" onclick="sendMsg()">Send</button>
+    </div>
+  </div>
+  <button class="chat-toggle" type="button" onclick="toggleChat()" aria-label="Open AI assistant">AI</button>
+</div>
+
+<script>
+const WORKER_URL = 'https://avinash-portfolio-worker.avinashsanaka.workers.dev';
+const THEME_KEY = 'portfolio-theme-v2';
+const CHAT_AVAILABLE = !WORKER_URL.includes('YOUR_CLOUDFLARE_WORKER_URL_HERE');
+
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+
+function setTheme(theme) {
+  const next = theme === 'light' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem(THEME_KEY, next);
+  if (themeToggle && themeIcon) {
+    const isLight = next === 'light';
+    themeToggle.setAttribute('aria-pressed', String(isLight));
+    themeToggle.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+    themeIcon.textContent = isLight ? 'Dark' : 'Light';
+  }
+}
+
+function initTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  setTheme(saved || 'dark');
+}
+
+themeToggle?.addEventListener('click', () => {
+  const current = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+  setTheme(current === 'light' ? 'dark' : 'light');
+});
+
+initTheme();
+
+function initChatAvailability() {
+  if (CHAT_AVAILABLE) return;
+  document.querySelector('.chat-widget')?.classList.add('is-hidden');
+  document.querySelectorAll('.chat-entry').forEach((el) => el.classList.add('is-hidden'));
+}
+
+initChatAvailability();
+
+const SYS = `You are an AI assistant representing Avinash Sanaka on his personal portfolio website. You answer questions from visitors: recruiters, hiring managers, developers, and collaborators.
+
+ABOUT AVINASH:
+- Software developer with 5 years of experience in automation, data engineering, and AI development
+- Based in Timmins, ON, Canada
+- Email: avinashsanaka1@gmail.com
+- Education: B.Tech Computer Science, JNTU Hyderabad, India; postgraduate studies in Information Systems and Business Analysis at Northern College, Canada
+- Career note: after Cisco ended in Nov 2022, Avinash moved to Canada and completed postgraduate studies before starting his current data and backend systems role
+
+WORK EXPERIENCE:
+1. Software Engineer, Data & Backend Systems - Kunuwanimano Child & Family Services (Dec 2023-Present, Timmins ON)
+   - Built a Python migration workspace across Person, Intake, Ongoing, and Resource domains with reusable utilities, script-to-table mapping, run logs, and migration status tracking
+   - Built Python automation frameworks and data pipelines across 20+ system domains with multi-stage validation, business-rule enforcement, deterministic ID generation
+   - Automated validation tooling caught 4,027 orphaned records and about 20 categories of bad data before production
+   - Maintained referential integrity across 1,000+ interconnected tables
+   - Traced and fixed a silent data-loss bug truncating multi-line case narratives by identifying an incorrect line-ordering assumption, rebuilding retrieval logic, and verifying across thousands of records
+   - Implemented deterministic KUNU-* IDs, parentUniqueID checks, duplicate handling, moved-person ID resolution through ind_moved_info, line-ordered narrative extraction, and CSV output standards
+   - Reverse-engineered undocumented legacy business logic across dozens of modules
+   - Used Claude API and MCP to automate recurring validation tasks and anomaly detection
+   - Produced pipeline documentation, data lineage tracking, and data quality KPIs per domain
+
+2. Software Engineer - Automation and Test - Cisco Systems (Nov 2020-Nov 2022, India)
+   - Worked on assigned IOS XE network OS features for 17.8 and 17.9 releases as part of the IOS XE Core test engineering team
+   - Developed test plans, testcase strategies, and manual plus automation testing for router feature validation
+   - Worked with IXIA and IXIA Explorer to validate packet flow and end-to-end data transfer
+   - Worked with Cisco ASR 900, 902, 903, and ASR 920 routers along with IOS XE
+   - Used Python, TCL, Cafy, PyATS, Linux, VNC, Git, and configuration templates for automation, debugging, source control, and test execution
+   - Responsible for finding bugs, grading severity, and performing positive and negative security testing for router scenarios
+
+3. Full Stack Developer - Perfex Technologies (Jun 2020-Jun 2021)
+   - Built web apps and RESTful APIs with React.js and Node.js
+   - Optimized data access and API response times
+   - Worked on stakeholder feature scoping and cross-functional delivery
+
+PROJECTS:
+- AI-Powered Financial Intelligence Platform (In Development): Multi-model AI with Claude API, OpenAI Codex, and NVIDIA NIM dispatched via MCP. Secure auth with Argon2 and HTTPOnly cookies. Pipelines for earnings analysis, stock sentiment, spending anomaly detection, retrieval/indexing, and category tagging.
+- AI Agent & Workflow Automation (Ongoing): MCP, n8n, multi-provider LLM APIs, prompt engineering, context management, APIs, batch/streaming patterns, event-driven workflows, and agent orchestration.
+
+SKILLS: Python, SQL, Java, Scala, Node.js, TCL, Linux, Claude API, MCP, RAG, Azure AI Search, Cosmos DB, OpenAI Codex, NVIDIA NIM, n8n, Prompt Engineering, Spark, PySpark, Airflow, Kafka, ETL/ELT, batch and streaming data pipelines, event-driven architectures, APIs, Graph connectors, PostgreSQL, MySQL, data modeling, schema design, indexing, Azure, AWS, Azure Data Factory, Azure Synapse Analytics, Azure Data Lake Storage, Azure SQL, AWS S3, Hadoop, Tableau, Power BI, Test Automation, CI/CD, Terraform, Azure DevOps, Git, Databricks, Delta Lake, Unity Catalog, data cataloging, lineage, access control, encryption, monitoring, alerting, cost control, and performance optimization.
+
+DATA ENGINEERING CAPABILITIES:
+- Designs, builds, and maintains data pipelines that ingest, transform, and deliver enterprise data to AI solutions and business applications
+- Develops integrations across enterprise data sources using APIs, Graph connectors, event-driven architectures, and batch/streaming patterns
+- Builds data stores and indexing infrastructure that support RAG and other AI consumption patterns
+- Implements data quality, validation, lineage, governance, access management, encryption, and privacy controls
+- Supports data models behind Power BI dashboards and AI-enabled analytics
+- Collaborates with AI engineers on data contracts for schema, latency, freshness, and solution requirements
+- Instruments pipelines for monitoring, alerting, cost control, performance optimization, and risk mitigation
+
+WHAT HE IS LOOKING FOR: Open to roles in AI engineering, data engineering, platform engineering, or automation, ideally where he can build AI-powered systems that solve real production problems. Currently based in Canada and open to remote.
+
+RESPONSE GUIDELINES:
+- Be specific, warm, and informative
+- Refer to Avinash in third person
+- Keep responses concise
+- Never fabricate numbers, dates, or companies not listed above
+- If asked if he is available or open to work: yes, actively looking`;
+
+let chatOpen = false;
+let history = [];
+
+function toggleChat() {
+  if (!CHAT_AVAILABLE) return;
+  chatOpen ? closeChat() : openChat();
+}
+
+function openChat() {
+  if (!CHAT_AVAILABLE) return;
+  chatOpen = true;
+  document.getElementById('chat-panel').classList.add('open');
+  setTimeout(() => document.getElementById('chat-inp')?.focus(), 80);
+}
+
+function closeChat() {
+  chatOpen = false;
+  document.getElementById('chat-panel').classList.remove('open');
+}
+
+function sendSugg(btn) {
+  if (!CHAT_AVAILABLE) return;
+  document.getElementById('chat-inp').value = btn.textContent;
+  sendMsg();
+}
+
+async function sendMsg() {
+  if (!CHAT_AVAILABLE) return;
+  const inp = document.getElementById('chat-inp');
+  const text = inp.value.trim();
+  if (!text) return;
+
+  inp.value = '';
+  addMsg('user', text);
+  history.push({ role: 'user', content: text });
+
+  const typ = addTyping();
+  try {
+    const res = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ system: SYS, messages: history })
+    });
+
+    typ.remove();
+    if (!res.ok) throw new Error('api');
+
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || 'Sorry, I had trouble with that.';
+    addMsg('bot', reply);
+    history.push({ role: 'assistant', content: reply });
+    if (history.length > 20) history = history.slice(-20);
+  } catch {
+    typ.remove();
+    addMsg('bot', 'Connection issue. Please try again in a moment, or email Avinash at avinashsanaka1@gmail.com.');
+  }
+}
+
+function addMsg(type, text) {
+  const el = document.getElementById('chat-msgs');
+  const msg = document.createElement('div');
+  msg.className = `msg ${type}`;
+  msg.textContent = text;
+  el.appendChild(msg);
+  el.scrollTop = el.scrollHeight;
+  return msg;
+}
+
+function addTyping() {
+  const el = document.getElementById('chat-msgs');
+  const msg = document.createElement('div');
+  msg.className = 'msg bot typing';
+  msg.innerHTML = '<i></i><i></i><i></i>';
+  el.appendChild(msg);
+  el.scrollTop = el.scrollHeight;
+  return msg;
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeChat();
+});
+</script>
+</body>
+</html>
