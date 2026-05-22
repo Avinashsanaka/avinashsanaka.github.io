@@ -856,6 +856,22 @@ html[data-theme="light"] .project ul {
   flex: 0 0 auto;
 }
 
+.durga-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line-2));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 16%, transparent), color-mix(in srgb, var(--accent-2) 10%, transparent)),
+    var(--panel-2);
+  color: var(--accent);
+  font: 800 16px var(--sans);
+  letter-spacing: 0;
+  line-height: 1;
+}
+
 .chat-head > div {
   min-width: 0;
 }
@@ -1549,7 +1565,7 @@ html[data-theme="light"] .project ul {
 <div class="chat-widget">
   <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Durga, Avinash's job AI">
     <div class="chat-head">
-      <span class="brand-mark">D</span>
+      <span class="durga-mark" aria-hidden="true">D</span>
       <div>
         <strong>Durga</strong>
         <span>Avinash's personal jobs AI</span>
