@@ -34,6 +34,10 @@ export default {
       return new Response('Invalid JSON', { status: 400, headers: CORS_HEADERS });
     }
 
+    if (body.type === 'lead') {
+      return saveLead(body, env);
+    }
+
     // Basic validation
     if (!body.messages || !Array.isArray(body.messages) || body.messages.length === 0) {
       return new Response('Missing messages', { status: 400, headers: CORS_HEADERS });
@@ -62,3 +66,47 @@ export default {
     });
   },
 };
+
+async function saveLead(body, env) {
+  const name = sanitizeText(body.name || '').slice(0, 120);
+  const email = sanitizeText(body.email || '').slice(0, 180);
+  const page = sanitizeText(body.page || '').slice(0, 500);
+  const transcript = Array.isArray(body.transcript) ? body.transcript.slice(-10) : [];
+
+  if (!name || !isValidEmail(email)) {
+    return json({ error: 'Invalid lead' }, 400);
+  }
+
+  if (!env.LEADS) {
+    return json({ error: 'Lead storage not configured' }, 501);
+  }
+
+  const createdAt = new Date().toISOString();
+  const id = `lead:${createdAt}:${crypto.randomUUID()}`;
+
+  await env.LEADS.put(id, JSON.stringify({
+    id,
+    name,
+    email,
+    page,
+    createdAt,
+    transcript,
+  }));
+
+  return json({ ok: true, id });
+}
+
+function sanitizeText(value) {
+  return String(value).replace(/[\u0000-\u001F\u007F]/g, ' ').trim();
+}
+
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function json(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' },
+  });
+}

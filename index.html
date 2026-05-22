@@ -1123,7 +1123,7 @@ html[data-theme="light"] .project ul {
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
           <span class="theme-icon" id="theme-icon">Light</span>
         </button>
-        <button class="nav-action chat-entry" type="button" onclick="openChat()">Ask AI</button>
+        <button class="nav-action chat-entry" type="button" onclick="openChat()">Ask Durga</button>
       </div>
     </div>
   </header>
@@ -1156,7 +1156,7 @@ html[data-theme="light"] .project ul {
           <a class="btn primary" href="#case-study">View Case Study</a>
           <a class="btn secondary" href="mailto:avinashsanaka1@gmail.com">Email Me</a>
           <a class="btn secondary" href="https://ca.linkedin.com/in/sanaka-sanaka1998" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <button class="btn secondary chat-entry" type="button" onclick="openChat()">Ask the AI Assistant</button>
+          <button class="btn secondary chat-entry" type="button" onclick="openChat()">Ask Durga</button>
         </div>
       </div>
 
@@ -1530,7 +1530,7 @@ html[data-theme="light"] .project ul {
         <div class="actions">
           <a class="btn primary" href="mailto:avinashsanaka1@gmail.com">Email Avinash</a>
           <a class="btn secondary" href="https://ca.linkedin.com/in/sanaka-sanaka1998" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <button class="btn secondary chat-entry" type="button" onclick="openChat()">Ask AI</button>
+          <button class="btn secondary chat-entry" type="button" onclick="openChat()">Ask Durga</button>
         </div>
       </div>
     </section>
@@ -1542,18 +1542,18 @@ html[data-theme="light"] .project ul {
 </div>
 
 <div class="chat-widget">
-  <div class="chat-panel" id="chat-panel" role="dialog" aria-label="AI assistant">
+  <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Durga, Avinash's job AI">
     <div class="chat-head">
-      <span class="brand-mark">AI</span>
+      <span class="brand-mark">D</span>
       <div>
-        <strong>Avinash's AI Assistant</strong>
-        <span>Ask about experience, projects, or fit</span>
+        <strong>Durga</strong>
+        <span>Avinash's personal jobs AI</span>
       </div>
       <button class="chat-close" type="button" onclick="closeChat()" aria-label="Close chat">x</button>
     </div>
 
     <div class="chat-messages" id="chat-msgs">
-      <div class="msg bot">Hey, I can answer questions about Avinash's experience, AI projects, data engineering work, and technical strengths.</div>
+      <div class="msg bot">Hi, I'm Durga, Avinash's personal jobs AI. Ask me about his experience, projects, data engineering work, or role fit.</div>
     </div>
 
     <div class="chat-suggestions" id="chat-suggestions">
@@ -1563,11 +1563,11 @@ html[data-theme="light"] .project ul {
     </div>
 
     <div class="chat-input">
-      <input id="chat-inp" type="text" placeholder="Ask about Avinash..." autocomplete="off" onkeydown="if(event.key==='Enter')sendMsg()">
+      <input id="chat-inp" type="text" placeholder="Ask Durga..." autocomplete="off" onkeydown="if(event.key==='Enter')sendMsg()">
       <button type="button" onclick="sendMsg()">Send</button>
     </div>
   </div>
-  <button class="chat-toggle" type="button" onclick="toggleChat()" aria-label="Open AI assistant">AI</button>
+  <button class="chat-toggle" type="button" onclick="toggleChat()" aria-label="Open Durga">D</button>
 </div>
 
 <script>
@@ -1610,7 +1610,7 @@ function initChatAvailability() {
 
 initChatAvailability();
 
-const SYS = `You are an AI assistant representing Avinash Sanaka on his personal portfolio website. You answer questions from visitors: recruiters, hiring managers, developers, and collaborators.
+const SYS = `You are Durga, Avinash Sanaka's personal jobs AI on his portfolio website. You answer questions from visitors: recruiters, hiring managers, developers, and collaborators.
 
 ABOUT AVINASH:
 - Software developer with 5 years of experience in automation, data engineering, and AI development
@@ -1663,6 +1663,7 @@ WHAT HE IS LOOKING FOR: Open to roles in AI engineering, data engineering, platf
 
 RESPONSE GUIDELINES:
 - Be specific, warm, and informative
+- You may introduce yourself as Durga when it feels natural
 - Refer to Avinash in third person
 - Keep responses concise
 - Never fabricate numbers, dates, or companies not listed above
@@ -1670,6 +1671,10 @@ RESPONSE GUIDELINES:
 
 let chatOpen = false;
 let history = [];
+let userQuestionCount = 0;
+let leadPrompted = false;
+let leadMode = null;
+let leadName = '';
 
 function dismissSuggestions() {
   document.getElementById('chat-suggestions')?.classList.add('dismissed');
@@ -1706,8 +1711,15 @@ async function sendMsg() {
 
   dismissSuggestions();
   inp.value = '';
+
+  if (leadMode) {
+    handleLeadInput(text);
+    return;
+  }
+
   addMsg('user', text);
   history.push({ role: 'user', content: text });
+  userQuestionCount += 1;
 
   const typ = addTyping();
   try {
@@ -1725,9 +1737,66 @@ async function sendMsg() {
     addMsg('bot', reply);
     history.push({ role: 'assistant', content: reply });
     if (history.length > 20) history = history.slice(-20);
+    maybeAskForLead();
   } catch {
     typ.remove();
     addMsg('bot', 'Connection issue. Please try again in a moment, or email Avinash at avinashsanaka1@gmail.com.');
+  }
+}
+
+function maybeAskForLead() {
+  if (leadPrompted || userQuestionCount < 3) return;
+  leadPrompted = true;
+  leadMode = 'name';
+  addMsg('bot', 'You have asked a few good questions. If you want Avinash to follow up, what is your name?');
+}
+
+function handleLeadInput(text) {
+  addMsg('user', text);
+
+  if (leadMode === 'name') {
+    leadName = text;
+    leadMode = 'email';
+    addMsg('bot', `Thanks, ${leadName}. What email should Avinash use to reach you?`);
+    return;
+  }
+
+  if (leadMode === 'email') {
+    if (!isValidEmail(text)) {
+      addMsg('bot', 'That email does not look quite right. Please send the best email for Avinash to use.');
+      return;
+    }
+
+    leadMode = null;
+    saveLead({ name: leadName, email: text });
+  }
+}
+
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+async function saveLead(lead) {
+  const typ = addTyping();
+  try {
+    const res = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'lead',
+        name: lead.name,
+        email: lead.email,
+        page: window.location.href,
+        transcript: history.slice(-10)
+      })
+    });
+
+    typ.remove();
+    if (!res.ok) throw new Error('lead');
+    addMsg('bot', `Thanks, ${lead.name}. I saved your details so Avinash can follow up.`);
+  } catch {
+    typ.remove();
+    addMsg('bot', `Thanks, ${lead.name}. I could not save that automatically, so please email Avinash directly at avinashsanaka1@gmail.com.`);
   }
 }
 
