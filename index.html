@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Avinash Sanaka - Software Engineer</title>
-<meta name="description" content="Software Engineer specializing in automation frameworks, AI workflows, and data quality systems. 5 years of experience across Cisco, data pipelines, and Claude API integrations.">
+<meta name="description" content="Software Engineer specializing in data engineering, AI workflows, Python automation, and production data quality systems.">
 <meta property="og:title" content="Avinash Sanaka - Software Engineer">
 <meta property="og:description" content="Automation, AI workflows, and data quality systems built for production.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -832,6 +832,11 @@ button, input { font: inherit; }
   gap: 18px;
 }
 
+.bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.bento-grid .bento-primary { grid-column: span 2; }
+.bento-grid .bento-wide { grid-column: span 3; }
+.bento-wide-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+
 .project {
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1215,6 +1220,83 @@ html[data-theme="light"] .project ul {
 .skills-grid.visible .skill-group:nth-child(4) { transition-delay: 225ms; }
 .skills-grid.visible .skill-group:nth-child(5) { transition-delay: 300ms; }
 
+/* ── Terminal Pre-loader ──────────────────────── */
+#preloader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #070a0e;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.6s ease;
+}
+#preloader.hide { opacity: 0; pointer-events: none; }
+.boot-screen { font: 13px/1.9 "IBM Plex Mono", monospace; max-width: 500px; width: 88%; }
+.boot-prompt { color: #89f1c8; font-weight: 600; display: block; margin-bottom: 10px; letter-spacing: 0.04em; font-size: 14px; }
+.boot-line { display: block; opacity: 0; color: #59d2ff; padding: 1px 0; }
+.boot-line.in { animation: b-in 0.07s ease forwards; }
+.boot-line.dim { color: #3d5060; }
+.boot-line.ok { color: #89f1c8; }
+.boot-cursor { display: inline-block; width: 9px; height: 14px; background: #59d2ff; vertical-align: middle; margin-left: 2px; animation: blink 0.85s step-end infinite; }
+@keyframes b-in { to { opacity: 1; } }
+@keyframes blink { 0%,100%{opacity:1;}50%{opacity:0;} }
+
+/* ── KPI / Career Impact ─────────────────────── */
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+  margin-top: 32px;
+}
+.kpi-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--panel) 72%, transparent);
+  padding: 22px 16px;
+  text-align: center;
+  transition: border-color 0.2s ease;
+}
+.kpi-card:hover { border-color: var(--accent); }
+.kpi-num {
+  font-size: clamp(26px, 2.8vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--accent);
+}
+.kpi-num.green { color: var(--accent-2); }
+.kpi-num.amber { color: var(--amber); }
+.kpi-desc { color: var(--muted); font-size: 11px; line-height: 1.45; margin-top: 10px; }
+
+/* ── The Lab ──────────────────────────────────── */
+.lab-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.lab-card {
+  border: 1px solid color-mix(in srgb, var(--amber) 28%, var(--line));
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--amber) 4%, var(--panel));
+  padding: 24px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.lab-card:hover {
+  border-color: color-mix(in srgb, var(--amber) 55%, var(--line));
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+.lab-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid color-mix(in srgb, var(--amber) 42%, var(--line));
+  color: var(--amber); border-radius: 999px;
+  padding: 4px 10px; font: 600 10px var(--mono);
+  text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 14px;
+}
+.lab-badge::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--amber); animation: pulse-dot 2s ease infinite;
+}
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);} }
+.lab-card h3 { margin: 0 0 10px; font-size: 18px; line-height: 1.2; }
+.lab-card p { color: var(--muted); font-size: 14px; line-height: 1.55; margin: 0 0 16px; }
+.status.shipped {
+  border-color: color-mix(in srgb, var(--amber) 48%, var(--line));
+  color: var(--amber);
+}
+
 @media (max-width: 980px) {
   .hero,
   .about-grid,
@@ -1234,6 +1316,12 @@ html[data-theme="light"] .project ul {
   .role {
     grid-template-columns: 1fr;
   }
+
+  .bento-grid { grid-template-columns: repeat(2, 1fr); }
+  .bento-grid .bento-wide { grid-column: span 2; }
+  .kpi-strip { grid-template-columns: repeat(3, 1fr); }
+  .lab-grid { grid-template-columns: repeat(2, 1fr); }
+  .bento-wide-inner { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 760px) {
@@ -1262,11 +1350,17 @@ html[data-theme="light"] .project ul {
   .proof-row,
   .skills-grid,
   .projects-grid,
+  .bento-grid,
+  .kpi-strip,
+  .lab-grid,
   .metric-board,
   .pipeline-flow,
   .contact-panel {
     grid-template-columns: 1fr;
   }
+
+  .bento-grid .bento-primary,
+  .bento-grid .bento-wide { grid-column: unset; }
 
   .map-grid {
     grid-template-columns: 1fr;
@@ -1312,6 +1406,13 @@ html[data-theme="light"] .project ul {
 </style>
 </head>
 <body>
+<div id="preloader" aria-hidden="true">
+  <div class="boot-screen">
+    <span class="boot-prompt">avinash-portfolio v2</span>
+    <div id="boot-lines"></div>
+    <span class="boot-cursor" id="boot-cursor"></span>
+  </div>
+</div>
 <div class="page">
   <header class="nav">
     <div class="shell nav-inner">
@@ -1324,10 +1425,12 @@ html[data-theme="light"] .project ul {
       </a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="#about">About</a>
+        <a href="#impact">Impact</a>
         <a href="#case-study">Case Study</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
+        <a href="#lab">Lab</a>
       </nav>
       <div class="nav-controls">
         <div class="social-links" aria-label="Social links">
@@ -1429,16 +1532,16 @@ html[data-theme="light"] .project ul {
       <div class="about-grid reveal">
         <div class="story">
           <p>
-            I am a software developer with 5 years of experience designing automation frameworks, validation pipelines, and developer tooling across production-scale systems.
+            I am a software developer focused on data engineering, backend systems, and AI-ready automation. At Kunuwanimano Child & Family Services, I build Python and SQL systems that make high-trust case data visible, repeatable, and safe to migrate.
           </p>
           <p>
-            My strongest lane is Python and SQL engineering: building systems that make data quality visible, repeatable, and testable. At Cisco, that meant IOS XE feature testing, router validation, IXIA traffic testing, and Python/TCL automation. At Kunuwanimano Child & Family Services, it means backend and data systems with strict integrity requirements.
+            My strongest lane is turning messy production data into governed pipelines: deterministic IDs, parent-child validation, lineage, run logs, quality checks, and analytics-ready outputs. This work protects multi-line narrative data and helps keep interconnected datasets trustworthy before production deployment.
           </p>
           <p>
-            After Cisco, I moved to Canada and completed postgraduate studies in Information Systems and Business Analysis at Northern College before stepping into my current data and backend systems role.
+            Before this role, I worked at Cisco on IOS XE feature testing, router validation, IXIA traffic testing, and Python/TCL automation. That network systems background still shapes how I build today: careful validation, clear failure signals, and automation that can be trusted under pressure.
           </p>
           <p>
-            I am also actively building with Claude API, MCP, OpenAI Codex, NVIDIA NIM, and n8n to create practical AI workflows for validation, anomaly detection, RAG-style retrieval, and multi-model orchestration.
+            I also build with Claude API, MCP, OpenAI Codex, NVIDIA NIM, and n8n to create practical AI workflows for validation, anomaly detection, RAG-style retrieval, and multi-model orchestration.
           </p>
         </div>
 
@@ -1459,6 +1562,44 @@ html[data-theme="light"] .project ul {
             <strong>Cloud data engineer</strong>
             <span>Azure, AWS, Linux, APIs, event-driven data movement, batch/streaming pipelines, and AI-ready stores.</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section" id="impact">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">Career Impact</div>
+          <h2>Five years of building systems that hold under pressure.</h2>
+        </div>
+        <p class="section-intro">
+          Cumulative numbers across enterprise migrations, cloud data platforms, and AI automation work.
+        </p>
+      </div>
+      <div class="kpi-strip reveal" id="kpi-strip">
+        <div class="kpi-card">
+          <div class="kpi-num" data-count="5" data-suffix=" yrs">5 yrs</div>
+          <div class="kpi-desc">software engineering across production systems</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num green" data-count="4027">4,027</div>
+          <div class="kpi-desc">critical records caught before production deployment</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num amber" data-count="1000" data-suffix="+">1,000+</div>
+          <div class="kpi-desc">production tables under referential integrity governance</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num" data-count="20" data-suffix="+">20+</div>
+          <div class="kpi-desc">system domains automated with validation frameworks</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num green" data-count="198">198</div>
+          <div class="kpi-desc">Python scripts shipped with full run-log audit trail</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num amber" data-count="3">3</div>
+          <div class="kpi-desc">enterprise companies — Cisco, Kunuwanimano, Perfex</div>
         </div>
       </div>
     </section>
@@ -1730,8 +1871,8 @@ html[data-theme="light"] .project ul {
         </p>
       </div>
 
-      <div class="projects-grid reveal">
-        <article class="project">
+      <div class="bento-grid reveal">
+        <article class="project bento-primary">
           <div class="project-top">
             <h3>AI-Powered Financial Intelligence Platform</h3>
             <span class="status">In Development</span>
@@ -1774,6 +1915,75 @@ html[data-theme="light"] .project ul {
             <span class="chip">Event-driven</span>
           </div>
         </article>
+
+        <article class="project bento-wide">
+          <div class="bento-wide-inner">
+            <div>
+              <div class="project-top">
+                <h3>Enterprise Data Migration Platform</h3>
+                <span class="status shipped">Shipped</span>
+              </div>
+              <p>Python workspace for migrating high-trust case data across Person, Intake, Ongoing, and Resource domains — deterministic IDs, parent-child validation, run-log auditing, and multi-stage integrity checks. Caught 4,027 critical records before production. <a href="#case-study" style="color:var(--accent);text-decoration:none;">Full case study →</a></p>
+            </div>
+            <div class="project-stack" style="align-content:start;margin-top:0">
+              <span class="chip prime">Python</span>
+              <span class="chip prime">SQL</span>
+              <span class="chip">ETL/ELT</span>
+              <span class="chip">Data Quality</span>
+              <span class="chip">Lineage</span>
+              <span class="chip">PostgreSQL</span>
+              <span class="chip">Claude API</span>
+              <span class="chip">MCP</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell section" id="lab">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">The Lab</div>
+          <h2>Experiments and prototypes in constant motion.</h2>
+        </div>
+        <p class="section-intro">
+          Ideas I am actively prototyping or exploring — where the next production system usually starts.
+        </p>
+      </div>
+      <div class="lab-grid reveal">
+        <div class="lab-card">
+          <div class="lab-badge">Prototype</div>
+          <h3>Real-time Pipeline Health Monitor</h3>
+          <p>A streaming dashboard that surfaces live validation metrics, error rates, and record-flow throughput across active data pipelines. Built around WebSocket event streams and a time-series backend.</p>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">Kafka</span>
+            <span class="chip">WebSocket</span>
+            <span class="chip">Streaming</span>
+          </div>
+        </div>
+        <div class="lab-card">
+          <div class="lab-badge">Exploring</div>
+          <h3>AI Schema Detective</h3>
+          <p>An LLM-powered tool that reads raw production tables and reverse-engineers undocumented business rules, field relationships, and data contracts — turning implicit institutional knowledge into testable specs.</p>
+          <div class="chips">
+            <span class="chip">Claude API</span>
+            <span class="chip">MCP</span>
+            <span class="chip">SQL</span>
+            <span class="chip">RAG</span>
+          </div>
+        </div>
+        <div class="lab-card">
+          <div class="lab-badge">Concept</div>
+          <h3>Multi-Model Evaluation Harness</h3>
+          <p>A framework for running the same data engineering task across Claude, GPT, and NVIDIA NIM simultaneously — comparing outputs, cost, latency, and accuracy to make smarter model-routing decisions in production.</p>
+          <div class="chips">
+            <span class="chip">Claude API</span>
+            <span class="chip">OpenAI</span>
+            <span class="chip">NVIDIA NIM</span>
+            <span class="chip">Python</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2148,7 +2358,7 @@ const countObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.4 });
 
-document.querySelectorAll('.proof-row, .metric-board').forEach((el) => countObserver.observe(el));
+document.querySelectorAll('.proof-row, .metric-board, #kpi-strip').forEach((el) => countObserver.observe(el));
 
 /* ── Proactive Durga bubble ───────────────────── */
 function closeBubble() {
@@ -2180,6 +2390,49 @@ if (CHAT_AVAILABLE) {
     if (!chatOpen) document.getElementById('durga-bubble')?.classList.add('show');
   }, 6000);
 }
+
+/* ── Terminal Pre-loader ─────────────────────── */
+(function () {
+  const el = document.getElementById('preloader');
+  if (!el) return;
+  if (sessionStorage.getItem('pl-done')) { el.remove(); return; }
+  sessionStorage.setItem('pl-done', '1');
+
+  const lines = [
+    { text: '> initializing runtime...', cls: '' },
+    { text: '> loading data pipeline modules', cls: '' },
+    { text: '> mounting production systems...', cls: '' },
+    { text: '> integrity checks: 4,027 records scanned', cls: '' },
+    { text: '> AI layer: connected', cls: 'ok' },
+    { text: '> system ready.', cls: 'ok' },
+  ];
+
+  const cursor = document.getElementById('boot-cursor');
+  const container = document.getElementById('boot-lines');
+  let i = 0;
+
+  function nextLine() {
+    if (i >= lines.length) {
+      if (cursor) cursor.style.display = 'none';
+      setTimeout(dismiss, 380);
+      return;
+    }
+    const span = document.createElement('span');
+    span.className = 'boot-line' + (lines[i].cls ? ' ' + lines[i].cls : '');
+    span.textContent = lines[i].text;
+    container.appendChild(span);
+    requestAnimationFrame(() => span.classList.add('in'));
+    i++;
+    setTimeout(nextLine, i === lines.length ? 260 : 200);
+  }
+
+  function dismiss() {
+    el.classList.add('hide');
+    setTimeout(() => el.remove(), 650);
+  }
+
+  nextLine();
+})();
 
 /* ── Pipeline stage animation ─────────────────── */
 (function () {
