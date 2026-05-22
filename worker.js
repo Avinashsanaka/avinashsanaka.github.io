@@ -71,7 +71,7 @@ async function saveLead(body, env) {
   const name = sanitizeText(body.name || '').slice(0, 120);
   const email = sanitizeText(body.email || '').slice(0, 180);
   const page = sanitizeText(body.page || '').slice(0, 500);
-  const transcript = Array.isArray(body.transcript) ? body.transcript.slice(-10) : [];
+  const transcript = sanitizeTranscript(body.transcript);
 
   if (!name || !isValidEmail(email)) {
     return json({ error: 'Invalid lead' }, 400);
@@ -98,6 +98,15 @@ async function saveLead(body, env) {
 
 function sanitizeText(value) {
   return String(value).replace(/[\u0000-\u001F\u007F]/g, ' ').trim();
+}
+
+function sanitizeTranscript(transcript) {
+  if (!Array.isArray(transcript)) return [];
+
+  return transcript.slice(-4).map((item) => ({
+    role: sanitizeText(item?.role || '').slice(0, 20),
+    content: sanitizeText(item?.content || '').slice(0, 500),
+  })).filter((item) => item.role && item.content);
 }
 
 function isValidEmail(value) {

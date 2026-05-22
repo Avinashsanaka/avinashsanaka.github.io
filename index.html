@@ -1277,7 +1277,7 @@ html[data-theme="light"] .project ul {
           <div class="section-kicker">Featured Case Study</div>
           <h2 class="case-title">Engineering a repeatable data migration platform for high-trust case data.</h2>
           <p class="case-copy">
-            At Kunuwanimano Child & Family Services, I built a Python-based migration workspace around legacy Ingres data, CSV/workbook exports, and strict downstream template requirements. The work turned undocumented joins, merged person IDs, narrative text fields, and parent-child dependencies into documented, repeatable migration pipelines.
+            At Kunuwanimano Child & Family Services, I built a Python-based migration workspace around legacy relational data, CSV/workbook exports, and strict downstream template requirements. The work turned undocumented joins, merged person IDs, narrative text fields, and parent-child dependencies into documented, repeatable migration pipelines.
           </p>
 
           <div class="case-points">
@@ -1287,11 +1287,11 @@ html[data-theme="light"] .project ul {
             </div>
             <div class="case-point">
               <b>Design</b>
-              <span>Created deterministic <code>KUNU-*</code> unique IDs, parentUniqueID rules, stable sequence patterns, CSV output standards, date formatting, worker-name normalization, and duplicate-handling conventions.</span>
+              <span>Created deterministic legacy ID patterns, parent-child relationship rules, stable sequence patterns, CSV output standards, date formatting, worker-name normalization, and duplicate-handling conventions.</span>
             </div>
             <div class="case-point">
               <b>Safeguards</b>
-              <span>Resolved moved/merged person IDs through <code>ind_moved_info</code>, checked duplicate <code>uniqueID</code> values, validated missing parent links, and preserved narrative text by fetching <code>textnum</code> rows in line order.</span>
+              <span>Resolved moved/merged person records, checked duplicate output keys, validated missing parent links, and preserved multi-line narrative text in the correct source order.</span>
             </div>
             <div class="case-point">
               <b>Impact</b>
@@ -1441,7 +1441,7 @@ html[data-theme="light"] .project ul {
             <ul>
               <li>Built a Python migration workspace across Person, Intake, Ongoing, and Resource domains with reusable utilities, script-to-table mapping, run logs, and migration status tracking.</li>
               <li>Caught 4,027 orphaned records and roughly 20 categories of bad data before production deployment.</li>
-              <li>Implemented deterministic <code>KUNU-*</code> IDs, parentUniqueID checks, duplicate handling, moved-person ID resolution, line-ordered narrative extraction, and CSV output standards.</li>
+              <li>Implemented deterministic legacy ID generation, parent-child checks, duplicate handling, moved-person record resolution, line-ordered narrative extraction, and CSV output standards.</li>
               <li>Maintained referential integrity across 1,000+ interconnected tables with lineage, documentation, data quality KPIs, and analytics-ready models.</li>
               <li>Integrated Claude API and MCP to automate recurring validation work and support AI-enabled anomaly detection workflows.</li>
             </ul>
@@ -1647,7 +1647,7 @@ WORK EXPERIENCE:
    - Automated validation tooling caught 4,027 orphaned records and about 20 categories of bad data before production
    - Maintained referential integrity across 1,000+ interconnected tables
    - Traced and fixed a silent data-loss bug truncating multi-line case narratives by identifying an incorrect line-ordering assumption, rebuilding retrieval logic, and verifying across thousands of records
-   - Implemented deterministic KUNU-* IDs, parentUniqueID checks, duplicate handling, moved-person ID resolution through ind_moved_info, line-ordered narrative extraction, and CSV output standards
+   - Implemented deterministic legacy ID generation, parent-child checks, duplicate handling, moved-person record resolution, line-ordered narrative extraction, and CSV output standards
    - Reverse-engineered undocumented legacy business logic across dozens of modules
    - Used Claude API and MCP to automate recurring validation tasks and anomaly detection
    - Produced pipeline documentation, data lineage tracking, and data quality KPIs per domain
@@ -1809,7 +1809,7 @@ async function saveLead(lead) {
         name: lead.name,
         email: lead.email,
         page: window.location.href,
-        transcript: history.slice(-10)
+        transcript: getLeadTranscript()
       })
     });
 
@@ -1820,6 +1820,13 @@ async function saveLead(lead) {
     typ.remove();
     addMsg('bot', `Thanks, ${lead.name}. I could not save that automatically, so please email Avinash directly at avinashsanaka1@gmail.com.`);
   }
+}
+
+function getLeadTranscript() {
+  return history.slice(-4).map((item) => ({
+    role: item.role,
+    content: String(item.content || '').slice(0, 500)
+  }));
 }
 
 function addMsg(type, text) {
