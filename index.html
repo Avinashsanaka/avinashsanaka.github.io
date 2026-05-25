@@ -2085,9 +2085,9 @@ ABOUT AVINASH:
 
 WORK EXPERIENCE:
 1. Software Engineer, Data & Backend Systems - Kunuwanimano Child & Family Services (Dec 2023-Present, Timmins ON)
-   - Built a Python migration workspace across Person, Intake, Ongoing, and Resource domains with reusable utilities, script-to-table mapping, run logs, and migration status tracking
+   - Built a Python (pandas, JDBC) migration workspace for a legacy Ingres/Frontline system across Person, Intake, Ongoing, and Resource domains with reusable utilities, script-to-table mapping, run logs, and migration status tracking
    - Built Python automation frameworks and data pipelines across 20+ system domains with multi-stage validation, business-rule enforcement, deterministic ID generation
-   - Automated validation tooling caught 4,027 orphaned records and about 20 categories of bad data before production
+   - Automated validation tooling caught 4,027 orphaned records across ~27,000 individuals and 15,000–20,000 service/case records, plus about 20 categories of bad data before production
    - Maintained referential integrity across 1,000+ interconnected tables
    - Traced and fixed a silent data-loss bug truncating multi-line case narratives by identifying an incorrect line-ordering assumption, rebuilding retrieval logic, and verifying across thousands of records
    - Implemented deterministic legacy ID generation, parent-child checks, duplicate handling, moved-person record resolution, line-ordered narrative extraction, and CSV output standards
@@ -2095,7 +2095,7 @@ WORK EXPERIENCE:
    - Used Claude API and MCP to automate recurring validation tasks and anomaly detection
    - Produced pipeline documentation, data lineage tracking, and data quality KPIs per domain
 
-2. Software Engineer - Automation and Test - Cisco Systems (Nov 2020-Nov 2022, India)
+2. Software Engineer, Test and Automation - Cisco Systems (Jul 2021 – Nov 2022, India)
    - Worked on assigned IOS XE network OS features for 17.8 and 17.9 releases as part of the IOS XE Core test engineering team
    - Developed test plans, testcase strategies, and manual plus automation testing for router feature validation
    - Worked with IXIA and IXIA Explorer to validate packet flow and end-to-end data transfer
@@ -2109,10 +2109,11 @@ WORK EXPERIENCE:
    - Worked on stakeholder feature scoping and cross-functional delivery
 
 PROJECTS:
+- Enterprise Data Migration Platform (Shipped): Migrated ~27,000 individuals and 15,000–20,000 service/case records from a legacy Ingres/Frontline system with no data dictionary. Reverse-engineered data mappings from front-end screens. Built Python/pandas/JDBC pipelines across Person, Intake, Ongoing, and Resource domains. Caught 4,027 orphaned records before production.
 - AI-Powered Financial Intelligence Platform (In Development): Multi-model AI with Claude API, OpenAI Codex, and NVIDIA NIM dispatched via MCP. Secure auth with Argon2 and HTTPOnly cookies. Pipelines for earnings analysis, stock sentiment, spending anomaly detection, retrieval/indexing, and category tagging.
 - AI Agent & Workflow Automation (Ongoing): MCP, n8n, multi-provider LLM APIs, prompt engineering, context management, APIs, batch/streaming patterns, event-driven workflows, and agent orchestration.
 
-SKILLS: Python, SQL, Java, Scala, Node.js, TCL, Linux, Claude API, MCP, RAG, Azure AI Search, Cosmos DB, OpenAI Codex, NVIDIA NIM, n8n, Prompt Engineering, Spark, PySpark, Airflow, Kafka, ETL/ELT, batch and streaming data pipelines, event-driven architectures, APIs, Graph connectors, PostgreSQL, MySQL, data modeling, schema design, indexing, Azure, AWS, Azure Data Factory, Azure Synapse Analytics, Azure Data Lake Storage, Azure SQL, AWS S3, Hadoop, Tableau, Power BI, Test Automation, CI/CD, Terraform, Azure DevOps, Git, Databricks, Delta Lake, Unity Catalog, data cataloging, lineage, access control, encryption, monitoring, alerting, cost control, and performance optimization.
+SKILLS: Python, SQL, pandas, Java, Scala, Node.js, TCL, Linux, Ingres RDBMS, Claude API, MCP, RAG, OpenAI Codex, NVIDIA NIM, n8n, Prompt Engineering, Spark, PySpark, Airflow, Kafka, ETL/ELT, batch and streaming data pipelines, PostgreSQL, MySQL, data modeling, schema design, indexing, Azure, AWS, Azure Data Factory, Azure SQL, AWS S3, Databricks, Tableau, Power BI, Test Automation, CI/CD, Git, data lineage, access control, data quality, monitoring, and performance optimization.
 
 DATA ENGINEERING CAPABILITIES:
 - Designs, builds, and maintains data pipelines that ingest, transform, and deliver enterprise data to AI solutions and business applications
@@ -2132,6 +2133,7 @@ RESPONSE GUIDELINES:
 - Keep responses concise: usually 2-4 short paragraphs or 4-6 bullets max
 - Avoid ending every response with a generic question
 - Never fabricate numbers, dates, or companies not listed above
+- Never claim tools, technologies, or platforms not listed in SKILLS above
 - If asked if he is available or open to work: yes, actively looking`;
 
 let chatOpen = false;
